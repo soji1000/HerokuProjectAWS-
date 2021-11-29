@@ -1,11 +1,293 @@
 {
-    "appName": "brooks-test-app",
+    "appName": "young-caverns-28963",
     "region": "us-east-1",
-    "PG_Version": "13.3",
+    "addons": [
+        {
+            "actions": [],
+            "app": {
+                "id": "ca613935-8807-4c59-8b01-77456393f835",
+                "name": "young-caverns-28963"
+            },
+            "config_vars": [
+                "REDISTOGO_URL"
+            ],
+            "created_at": "2021-11-22T18:52:51Z",
+            "id": "1d5b6607-a0b0-46a9-b44e-0592e86b08fb",
+            "name": "redistogo-adjacent-47240",
+            "addon_service": {
+                "cli_plugin_name": null,
+                "created_at": "2010-06-04T11:10:03Z",
+                "human_name": "Redis To Go",
+                "id": "00cd10ae-5159-4eab-9d5e-11d21342517b",
+                "name": "redistogo",
+                "state": "ga",
+                "supports_multiple_installations": false,
+                "supports_sharing": false,
+                "updated_at": "2019-03-28T02:51:11Z"
+            },
+            "plan": {
+                "addon_service": {
+                    "id": "00cd10ae-5159-4eab-9d5e-11d21342517b",
+                    "name": "Redis To Go"
+                },
+                "compliance": [],
+                "created_at": "2013-08-06T03:50:21Z",
+                "default": true,
+                "description": "Redis To Go Nano",
+                "human_name": "Nano",
+                "id": "0e4db8d1-973a-40a6-8af2-06954105565c",
+                "installable_inside_private_network": false,
+                "installable_outside_private_network": true,
+                "name": "redistogo:nano",
+                "price": {
+                    "cents": 0,
+                    "unit": "month",
+                    "contract": false
+                },
+                "space_default": true,
+                "state": "ga",
+                "updated_at": "2017-03-22T17:33:50Z",
+                "visible": true
+            },
+            "billing_entity": {
+                "id": "ca613935-8807-4c59-8b01-77456393f835",
+                "name": "young-caverns-28963",
+                "type": "app"
+            },
+            "provider_id": "759789",
+            "state": "provisioned",
+            "updated_at": "2021-11-22T18:52:52Z",
+            "web_url": "https://addons-sso.heroku.com/apps/ca613935-8807-4c59-8b01-77456393f835/addons/1d5b6607-a0b0-46a9-b44e-0592e86b08fb",
+            "billed_price": {
+                "cents": 0,
+                "contract": false,
+                "unit": "month"
+            },
+            "attachments": []
+        },
+        {
+            "actions": [],
+            "app": {
+                "id": "ca613935-8807-4c59-8b01-77456393f835",
+                "name": "young-caverns-28963"
+            },
+            "config_vars": [
+                "BUCKETEER_AWS_ACCESS_KEY_ID",
+                "BUCKETEER_AWS_REGION",
+                "BUCKETEER_AWS_SECRET_ACCESS_KEY",
+                "BUCKETEER_BUCKET_NAME"
+            ],
+            "created_at": "2021-11-22T18:50:03Z",
+            "id": "2c1824ae-4add-4dbe-aa8a-80cdd743a230",
+            "name": "bucketeer-shallow-57233",
+            "addon_service": {
+                "cli_plugin_name": null,
+                "created_at": "2015-08-07T04:26:51Z",
+                "human_name": "Bucketeer",
+                "id": "6ba786d4-dfbd-4275-9a19-abb1e88ce8c3",
+                "name": "bucketeer",
+                "state": "ga",
+                "supports_multiple_installations": true,
+                "supports_sharing": true,
+                "updated_at": "2020-05-07T05:21:24Z"
+            },
+            "plan": {
+                "addon_service": {
+                    "id": "6ba786d4-dfbd-4275-9a19-abb1e88ce8c3",
+                    "name": "Bucketeer"
+                },
+                "compliance": [],
+                "created_at": "2015-12-13T03:21:02Z",
+                "default": true,
+                "description": "Bucketeer Hobbyist",
+                "human_name": "Hobbyist",
+                "id": "1f51dae1-bc33-4fca-9798-eb4792dfbf00",
+                "installable_inside_private_network": false,
+                "installable_outside_private_network": true,
+                "name": "bucketeer:hobbyist",
+                "price": {
+                    "cents": 500,
+                    "unit": "month",
+                    "contract": false
+                },
+                "space_default": true,
+                "state": "ga",
+                "updated_at": "2017-03-14T18:59:19Z",
+                "visible": true
+            },
+            "billing_entity": {
+                "id": "ca613935-8807-4c59-8b01-77456393f835",
+                "name": "young-caverns-28963",
+                "type": "app"
+            },
+            "provider_id": "be36cecf-15ab-4e51-a471-ee81f845e382",
+            "state": "provisioned",
+            "updated_at": "2021-11-22T18:50:04Z",
+            "web_url": "https://addons-sso.heroku.com/apps/ca613935-8807-4c59-8b01-77456393f835/addons/2c1824ae-4add-4dbe-aa8a-80cdd743a230",
+            "billed_price": {
+                "cents": 500,
+                "contract": false,
+                "unit": "month"
+            },
+            "attachments": []
+        },
+        {
+            "actions": [],
+            "app": {
+                "id": "ca613935-8807-4c59-8b01-77456393f835",
+                "name": "young-caverns-28963"
+            },
+            "config_vars": [
+                "EDGE_AWS_ACCESS_KEY_ID",
+                "EDGE_AWS_SECRET_ACCESS_KEY",
+                "EDGE_DISTRIBUTION_ID",
+                "EDGE_URL"
+            ],
+            "created_at": "2021-11-22T18:54:05Z",
+            "id": "8fdd2434-26cb-41f1-b22b-8d588541dcd8",
+            "name": "edge-clean-06413",
+            "addon_service": {
+                "cli_plugin_name": null,
+                "created_at": "2017-12-01T16:47:59Z",
+                "human_name": "Edge",
+                "id": "0b9281e9-b56f-472a-a4c5-472e69a17f17",
+                "name": "edge",
+                "state": "ga",
+                "supports_multiple_installations": false,
+                "supports_sharing": false,
+                "updated_at": "2021-11-09T16:15:04Z"
+            },
+            "plan": {
+                "addon_service": {
+                    "id": "0b9281e9-b56f-472a-a4c5-472e69a17f17",
+                    "name": "Edge"
+                },
+                "compliance": [],
+                "created_at": "2018-02-01T03:07:54Z",
+                "default": true,
+                "description": "Edge Hobby",
+                "human_name": "Hobby",
+                "id": "dd4f71e1-426e-457b-bf75-d4f5b8371c12",
+                "installable_inside_private_network": false,
+                "installable_outside_private_network": true,
+                "name": "edge:hobby",
+                "price": {
+                    "cents": 500,
+                    "unit": "month",
+                    "contract": false
+                },
+                "space_default": true,
+                "state": "ga",
+                "updated_at": "2018-03-06T15:54:56Z",
+                "visible": true
+            },
+            "billing_entity": {
+                "id": "ca613935-8807-4c59-8b01-77456393f835",
+                "name": "young-caverns-28963",
+                "type": "app"
+            },
+            "provider_id": "8fdd2434-26cb-41f1-b22b-8d588541dcd8",
+            "state": "provisioned",
+            "updated_at": "2021-11-22T18:54:12Z",
+            "web_url": "https://addons-sso.heroku.com/apps/ca613935-8807-4c59-8b01-77456393f835/addons/8fdd2434-26cb-41f1-b22b-8d588541dcd8",
+            "billed_price": {
+                "cents": 500,
+                "contract": false,
+                "unit": "month"
+            },
+            "attachments": []
+        },
+        {
+            "actions": [
+                {
+                    "id": "211af9be-e2f2-48af-bebf-08002e43e55c",
+                    "label": "Create Dataclip",
+                    "action": null,
+                    "url": "http://dataclips.heroku.com/clips/new?heroku_resource_id=:resource_id&heroku_id=:resource_uuid",
+                    "requires_owner": null
+                },
+                {
+                    "id": "8f4bc86c-0985-464b-b6f1-5426247632f5",
+                    "label": "Upgrade instructions",
+                    "action": null,
+                    "url": "https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases",
+                    "requires_owner": null
+                },
+                {
+                    "id": "9ed81190-9fee-4261-b8cb-d8b07f44ecc1",
+                    "label": "Capture backup",
+                    "action": null,
+                    "url": "https://data.heroku.com/datastore/:resource_uuid?heroku_action=capture_backup",
+                    "requires_owner": null
+                }
+            ],
+            "app": {
+                "id": "ca613935-8807-4c59-8b01-77456393f835",
+                "name": "young-caverns-28963"
+            },
+            "config_vars": [
+                "DATABASE_URL"
+            ],
+            "created_at": "2021-10-19T17:53:19Z",
+            "id": "e9498d3e-0230-4f5c-803c-1540a1da9089",
+            "name": "postgresql-convex-12132",
+            "addon_service": {
+                "cli_plugin_name": null,
+                "created_at": "2010-07-30T02:53:38Z",
+                "human_name": "Heroku Postgres",
+                "id": "6c67493d-8fc2-4cd4-9161-4f1ec11cbe69",
+                "name": "heroku-postgresql",
+                "state": "ga",
+                "supports_multiple_installations": true,
+                "supports_sharing": true,
+                "updated_at": "2021-01-21T17:01:54Z"
+            },
+            "plan": {
+                "addon_service": {
+                    "id": "6c67493d-8fc2-4cd4-9161-4f1ec11cbe69",
+                    "name": "Heroku Postgres"
+                },
+                "compliance": [],
+                "created_at": "2013-10-25T00:21:05Z",
+                "default": true,
+                "description": "Heroku Postgres Hobby Dev",
+                "human_name": "Hobby Dev",
+                "id": "062a1cc7-f79f-404c-9f91-135f70175577",
+                "installable_inside_private_network": false,
+                "installable_outside_private_network": true,
+                "name": "heroku-postgresql:hobby-dev",
+                "price": {
+                    "cents": 0,
+                    "unit": "month",
+                    "contract": false
+                },
+                "space_default": false,
+                "state": "ga",
+                "updated_at": "2017-03-14T18:59:32Z",
+                "visible": true
+            },
+            "billing_entity": {
+                "id": "ca613935-8807-4c59-8b01-77456393f835",
+                "name": "young-caverns-28963",
+                "type": "app"
+            },
+            "provider_id": "24973509",
+            "state": "provisioned",
+            "updated_at": "2021-10-19T17:53:20Z",
+            "web_url": "https://addons-sso.heroku.com/apps/ca613935-8807-4c59-8b01-77456393f835/addons/e9498d3e-0230-4f5c-803c-1540a1da9089",
+            "billed_price": {
+                "cents": 0,
+                "contract": false,
+                "unit": "month"
+            },
+            "attachments": []
+        }
+    ],
+    "PG_Version": "13.5",
     "vpcName": "DatabaseVPC",
     "hasGithub": "n",
     "hasECR": "y",
     "link": "public.ecr.aws/aws-containers/hello-app-runner:latest",
     "private_or_public": "ECR_PUBLIC",
-    "AWS_ID": "079591088249"
+    "AWS_ID": "805399209916"
 }

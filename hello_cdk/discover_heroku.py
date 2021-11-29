@@ -6,7 +6,7 @@ import json
 import os
 import webbrowser
 import re
-
+from subprocess import Popen, PIPE
 
 @click.command()
 
@@ -40,7 +40,7 @@ def main():
         click.secho("No app with that name.", fg = 'red')
         return
 
-    # map app region
+    # map app regionh
     click.secho("Your app's region is", fg = 'green')
     click.echo(aws_region)
     click.secho("For the fastest data replication, this will map to the AWS region ", fg = 'green')
@@ -53,12 +53,22 @@ def main():
     click.secho("Dyno info:", fg = 'green')
     click.echo(dynos)
 
+    #save the add-ons to the dictionary to match 
+
     # list add-ons
     click.secho("Listing addons...", fg = 'green')
-    os.system("heroku addons")
-
+    #os.system("heroku addons")
+    
+    #Save heroku add-ons to a list 
+    heroku3.core.Heroku.addons
+    herokuAddonProcessOutput = os.popen("heroku addons --json").read()
+    herokuAddOns = json.loads(herokuAddonProcessOutput)
+    herokuData['addons'] = herokuAddOns
+    
+      
     # get database version
-    databaseInfo = os.popen("heroku pg:info").read() # need to modify this for case when user has multiple apps on account
+    databaseInfo = os.popen("heroku pg:info --app " + appName ).read() # need to modify this for case when user has multiple apps on account
+    print("database:" + databaseInfo)
     databaseVersion = re.search("1?[0-9][.][0-9][0-9]?", databaseInfo).group()
     herokuData['PG_Version'] = databaseVersion
 
@@ -91,7 +101,7 @@ def main():
     herokuData['hasGithub'] = hasGithub
     if (hasGithub == 'y'):
         herokuData['link'] = click.prompt(click.style("Enter your repo link", fg = 'blue'))
-        
+
         # create github connection
         conn = os.popen("aws apprunner create-connection --connection-name \"apprunner-github-connection\" --provider-type \"GITHUB\"").read()
         connJson = json.loads(conn)
@@ -137,5 +147,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    

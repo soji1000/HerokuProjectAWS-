@@ -77,4 +77,26 @@ class HelloCdkStack(cdk.Stack):
         )
             
 
+    
+    
+     #if key in data
+      
+    # S3 (Bucketeer)
+        # The code that defines your stack goes here
+        bucket = s3.Bucket(self, id + "s3-bucket",
+            bucket_name= ('HelloCdkBucket'),
+            website_index_document= 'index.html',
+            website_error_document= 'error.html',
+            public_read_access= True,
+            removal_policy= core.RemovalPolicy.DESTROY)
+
+    #if key in data
+    # Elasticache (Redis)
+       
+
+
+     #if key in data
+    # Cloudfront (Edge)
+ 
+
         

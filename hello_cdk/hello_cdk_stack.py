@@ -11,6 +11,10 @@ from aws_cdk import aws_apprunner as apprunner
 from aws_cdk import aws_rds as rds
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_elasticbeanstalk as eb
+import aws_cdk.aws_cloudfront as cloudfront
+import aws_cdk.aws_elasticache as elasticache
+import aws_cdk.aws_cloudfront_origins as origins
+
 import json
 
 
@@ -23,7 +27,65 @@ class HelloCdkStack(cdk.Stack):
         f = open('app.json',)
         data = json.load(f)
         f.close()
-
+        
+        for addon in data['addons']:
+            if addon['plan']['addon_service']['name'] == "Bucketeer" :
+               # S3 (Bucketeer)
+               # The code that defines your stack goes here
+                bucket = s3.Bucket(self, "s3-bucket",
+                bucket_name= ('HelloCdkBucket'),
+                encryption=s3.BucketEncryption.S3_MANAGED,
+                block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+                removal_policy= core.RemovalPolicy.DESTROY)
+                
+            elif addon['plan']['addon_service']['name'] == "Redis To Go" :
+                #put code here. 
+                # Elasticachecluster (Redis)
+                cfn_cache_cluster = elasticache.CfnCacheCluster(self, "MyCfnCacheCluster",
+                    cache_node_type="cacheNodeType",
+                    engine="engine",
+                    num_cache_nodes=123,
+                    auto_minor_version_upgrade=False,
+                    az_mode="azMode",
+                    cache_parameter_group_name="cacheParameterGroupName",
+                    cache_security_group_names=["cacheSecurityGroupNames"],
+                    cache_subnet_group_name="cacheSubnetGroupName",
+                    cluster_name="clusterName",
+                    engine_version="engineVersion",
+                    log_delivery_configurations=[elasticache.CfnCacheCluster.LogDeliveryConfigurationRequestProperty(
+                        destination_details=elasticache.CfnCacheCluster.DestinationDetailsProperty(
+                            cloud_watch_logs_details=elasticache.CfnCacheCluster.CloudWatchLogsDestinationDetailsProperty(
+                                log_group="logGroup"
+                                ),
+                                    kinesis_firehose_details=elasticache.CfnCacheCluster.KinesisFirehoseDestinationDetailsProperty(
+                                        delivery_stream="deliveryStream"
+                                    )
+                                ),
+                                destination_type="destinationType",
+                                log_format="logFormat",
+                                log_type="logType"
+                            )],
+                            notification_topic_arn="notificationTopicArn",
+                            port=123,
+                            preferred_availability_zone="preferredAvailabilityZone",
+                            preferred_availability_zones=["preferredAvailabilityZones"],
+                            preferred_maintenance_window="preferredMaintenanceWindow",
+                            snapshot_arns=["snapshotArns"],
+                            snapshot_name="snapshotName",
+                            snapshot_retention_limit=123,
+                            snapshot_window="snapshotWindow"
+                        )
+                    
+                 
+            elif addon['plan']['addon_service']['name'] == "Edge" :
+                #put code here.
+                # Cloudfront Distribution (Edge) 
+                cloudfront.Distribution(self, "myDist",
+                    default_behavior=cloudfront.BehaviorOptions(origin=origins.S3Origin(bucket)))
+            else:
+                pass 
+                  
+         
         apprunner_service_name = cdk.CfnParameter(self, "ServiceName", type = "String", description = "name of apprunner service", default = data['appName'])
 
         # VPC
@@ -77,26 +139,9 @@ class HelloCdkStack(cdk.Stack):
         )
             
 
-    
-    
-     #if key in data
-      
-    # S3 (Bucketeer)
-        # The code that defines your stack goes here
-        bucket = s3.Bucket(self, id + "s3-bucket",
-            bucket_name= ('HelloCdkBucket'),
-            website_index_document= 'index.html',
-            website_error_document= 'error.html',
-            public_read_access= True,
-            removal_policy= core.RemovalPolicy.DESTROY)
-
-    #if key in data
-    # Elasticache (Redis)
+   
        
-
-
-     #if key in data
-    # Cloudfront (Edge)
+    
  
 
         

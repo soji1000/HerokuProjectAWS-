@@ -34,8 +34,9 @@ class HelloCdkStack(cdk.Stack):
                # The code that defines your stack goes here
                 bucket = s3.Bucket(self, "s3-bucket",
                 bucket_name= ('HelloCdkBucket'),
-                encryption=s3.BucketEncryption.S3_MANAGED,
-                block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+                website_index_document= 'index.html',
+                website_error_document= 'error.html',
+                public_read_access= True,
                 removal_policy= core.RemovalPolicy.DESTROY)
                 
             elif addon['plan']['addon_service']['name'] == "Redis To Go" :

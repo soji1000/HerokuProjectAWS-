@@ -200,21 +200,21 @@
         {
             "actions": [
                 {
-                    "id": "e401bd9b-e370-4a59-952a-358de62b8dff",
+                    "id": "539f4fe4-1271-4e4c-918b-7facd682f97c",
                     "label": "Create Dataclip",
                     "action": null,
                     "url": "http://dataclips.heroku.com/clips/new?heroku_resource_id=:resource_id&heroku_id=:resource_uuid",
                     "requires_owner": null
                 },
                 {
-                    "id": "d01722f4-6a32-468b-847d-96124c815818",
+                    "id": "63f05769-efff-425e-864e-4b24379ad5b1",
                     "label": "Upgrade instructions",
                     "action": null,
                     "url": "https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases",
                     "requires_owner": null
                 },
                 {
-                    "id": "5db10557-cdc1-4172-be5c-f6722d3450eb",
+                    "id": "06147e65-4322-43f7-88c2-265cc3d34328",
                     "label": "Capture backup",
                     "action": null,
                     "url": "https://data.heroku.com/datastore/:resource_uuid?heroku_action=capture_backup",

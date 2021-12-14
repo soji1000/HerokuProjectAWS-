@@ -27,64 +27,6 @@ class HelloCdkStack(cdk.Stack):
         f = open('app.json',)
         data = json.load(f)
         f.close()
-        
-        for addon in data['addons']:
-            if addon['plan']['addon_service']['name'] == "Bucketeer" :
-               # S3 (Bucketeer)
-               # The code that defines your stack goes here
-                bucket = s3.Bucket(self, "s3-bucket",
-                bucket_name= ('HelloCdkBucket'),
-                website_index_document= 'index.html',
-                website_error_document= 'error.html',
-                public_read_access= True,
-                removal_policy= core.RemovalPolicy.DESTROY)
-                
-            elif addon['plan']['addon_service']['name'] == "Redis To Go" :
-                #put code here. 
-                # Elasticachecluster (Redis)
-                cfn_cache_cluster = elasticache.CfnCacheCluster(self, "MyCfnCacheCluster",
-                    cache_node_type="cacheNodeType",
-                    engine="engine",
-                    num_cache_nodes=123,
-                    auto_minor_version_upgrade=False,
-                    az_mode="azMode",
-                    cache_parameter_group_name="cacheParameterGroupName",
-                    cache_security_group_names=["cacheSecurityGroupNames"],
-                    cache_subnet_group_name="cacheSubnetGroupName",
-                    cluster_name="clusterName",
-                    engine_version="engineVersion",
-                    log_delivery_configurations=[elasticache.CfnCacheCluster.LogDeliveryConfigurationRequestProperty(
-                        destination_details=elasticache.CfnCacheCluster.DestinationDetailsProperty(
-                            cloud_watch_logs_details=elasticache.CfnCacheCluster.CloudWatchLogsDestinationDetailsProperty(
-                                log_group="logGroup"
-                                ),
-                                    kinesis_firehose_details=elasticache.CfnCacheCluster.KinesisFirehoseDestinationDetailsProperty(
-                                        delivery_stream="deliveryStream"
-                                    )
-                                ),
-                                destination_type="destinationType",
-                                log_format="logFormat",
-                                log_type="logType"
-                            )],
-                            notification_topic_arn="notificationTopicArn",
-                            port=123,
-                            preferred_availability_zone="preferredAvailabilityZone",
-                            preferred_availability_zones=["preferredAvailabilityZones"],
-                            preferred_maintenance_window="preferredMaintenanceWindow",
-                            snapshot_arns=["snapshotArns"],
-                            snapshot_name="snapshotName",
-                            snapshot_retention_limit=123,
-                            snapshot_window="snapshotWindow"
-                        )
-                    
-                 
-            elif addon['plan']['addon_service']['name'] == "Edge" :
-                #put code here.
-                # Cloudfront Distribution (Edge) 
-                cloudfront.Distribution(self, "myDist",
-                    default_behavior=cloudfront.BehaviorOptions(origin=origins.S3Origin(bucket)))
-            else:
-                pass 
                   
          
         apprunner_service_name = cdk.CfnParameter(self, "ServiceName", type = "String", description = "name of apprunner service", default = data['appName'])
@@ -104,6 +46,69 @@ class HelloCdkStack(cdk.Stack):
             multi_az = True, \
             security_groups = [dbSecurityGroup]
         )
+        
+        for addon in data['addons']:
+            if addon['plan']['addon_service']['name'] == "Bucketeer" :
+               # S3 (Bucketeer)
+               # The code that defines your stack goes here
+                bucket = s3.Bucket(self, "s3-bucket",
+                website_index_document= 'index.html',
+                website_error_document= 'error.html',
+                public_read_access= True,
+                removal_policy= core.RemovalPolicy.DESTROY)
+                
+            #elif addon['plan']['addon_service']['name'] == "Redis To Go" :
+                #put code here. 
+                # Elasticachecluster (Redis)
+                #cfn_cache_cluster = elasticache.CfnCacheCluster(self, "MyCfnCacheCluster",
+                    #cache_node_type="cache.t1.micro",
+                    #engine="memcached",
+                    #num_cache_nodes= 1,
+                    
+                    #auto_minor_version_upgrade=False,
+                    #az_mode="cross-az",
+                    #cache_parameter_group_name="cacheParameterGroupName",
+                    #cache_security_group_names=["Ref: ElasticacheSecurityGroup"],
+                    #cache_subnet_group_name="cacheSubnetGroupName",
+                    #cluster_name="clusterName",
+                    #engine_version="engineVersion",
+                    #log_delivery_configurations=[elasticache.CfnCacheCluster.LogDeliveryConfigurationRequestProperty(
+                        #destination_details=elasticache.CfnCacheCluster.DestinationDetailsProperty(
+                            #cloud_watch_logs_details=elasticache.CfnCacheCluster.CloudWatchLogsDestinationDetailsProperty(
+                                #log_group="logGroup"
+                                #),
+                                    #kinesis_firehose_details=elasticache.CfnCacheCluster.KinesisFirehoseDestinationDetailsProperty(
+                                        #delivery_stream="deliveryStream"
+                                    #)
+                                #),
+                                #destination_type="destinationType",
+                                #log_format="logFormat",
+                                #log_type="logType"
+                            #)],
+                            #notification_topic_arn="notificationTopicArn",
+                            #port=123,
+                            #preferred_availability_zone="us-east-1a",
+                            #preferred_availability_zones=["us-east-1a","us-east-1a","us-east-1b"],
+                            #preferred_maintenance_window="preferredMaintenanceWindow",
+                            #snapshot_arns=["snapshotArns"],
+                            #snapshot_name="snapshotName",
+                            #snapshot_retention_limit=123,
+                            #snapshot_window="snapshotWindow",
+                            #tags=[core.CfnTag(
+                                #key="key",
+                                #value="value"
+                            #)],
+                            #vpc_security_group_ids=["sg-051d5d442da494470","sg-023bd098a732428cd","sg-0a0e96a7ed6630295","sg-0a7e03e6a19c7686f"]
+                        #)
+              
+                 
+            elif addon['plan']['addon_service']['name'] == "Edge" :
+                #put code here.
+                # Cloudfront Distribution (Edge) 
+                cloudfront.Distribution(self, "myDist",
+                    default_behavior=cloudfront.BehaviorOptions(origin=origins.S3Origin(bucket)))
+            else:
+                pass 
         
         # Apprunner
         if data['hasGithub'] == 'y':

@@ -14,6 +14,7 @@ from aws_cdk import aws_elasticbeanstalk as eb
 import aws_cdk.aws_cloudfront as cloudfront
 import aws_cdk.aws_elasticache as elasticache
 import aws_cdk.aws_cloudfront_origins as origins
+from aws_cdk import aws_iam as iam
 
 import json
 
@@ -27,8 +28,10 @@ class HelloCdkStack(cdk.Stack):
         f = open('app.json',)
         data = json.load(f)
         f.close()
-                  
+        
+                
          
+        
         apprunner_service_name = cdk.CfnParameter(self, "ServiceName", type = "String", description = "name of apprunner service", default = data['appName'])
 
         # VPC
@@ -51,11 +54,26 @@ class HelloCdkStack(cdk.Stack):
             if addon['plan']['addon_service']['name'] == "Bucketeer" :
                # S3 (Bucketeer)
                # The code that defines your stack goes here
+                
+                bucketName = "bucketeer-"+ data["AWS_ID"]
                 bucket = s3.Bucket(self, "s3-bucket",
+                bucket_name= bucketName,                
                 website_index_document= 'index.html',
                 website_error_document= 'error.html',
-                public_read_access= True,
                 removal_policy= core.RemovalPolicy.DESTROY)
+                
+                policyDocument_file = open('bucketpolicy.json', "r") 
+                policy_Doc = policyDocument_file.read().replace("BUCKETNAME",bucketName)
+                policy_document = iam.PolicyDocument.from_json(json.loads(policy_Doc))
+                
+                cfn_bucket_policy = s3.CfnBucketPolicy(self, "MyCfnBucketPolicy",
+                    bucket="bucket",
+                policy_document=policy_document
+                )
+
+                
+                
+                
                 
             #elif addon['plan']['addon_service']['name'] == "Redis To Go" :
                 #put code here. 

@@ -122,7 +122,7 @@
             },
             "provider_id": "be36cecf-15ab-4e51-a471-ee81f845e382",
             "state": "provisioned",
-            "updated_at": "2021-11-22T18:50:04Z",
+            "updated_at": "2021-12-14T02:17:35Z",
             "web_url": "https://addons-sso.heroku.com/apps/ca613935-8807-4c59-8b01-77456393f835/addons/2c1824ae-4add-4dbe-aa8a-80cdd743a230",
             "billed_price": {
                 "cents": 500,

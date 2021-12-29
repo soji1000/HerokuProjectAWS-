@@ -59,15 +59,15 @@ class HelloCdkStack(cdk.Stack):
                 bucket = s3.Bucket(self, "s3-bucket",
                 bucket_name= bucketName,                
                 website_index_document= 'index.html',
-                website_error_document= 'error.html',
-                removal_policy= core.RemovalPolicy.DESTROY)
+                website_error_document= 'error.html'
+                )
                 
                 policyDocument_file = open('bucketpolicy.json', "r") 
                 policy_Doc = policyDocument_file.read().replace("BUCKETNAME",bucketName)
                 policy_document = iam.PolicyDocument.from_json(json.loads(policy_Doc))
                 
                 cfn_bucket_policy = s3.CfnBucketPolicy(self, "MyCfnBucketPolicy",
-                    bucket="bucket",
+                    bucket=bucketName,
                 policy_document=policy_document
                 )
 
